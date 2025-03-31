@@ -80,6 +80,9 @@ I have set up some import statements and aliases in all of the notebooks to get 
 When creating new variables please use `snake_case` for consistency.
 
 ## Helpful links
+
+[Machine Learning podcast](https://podcasts.deptagency.com/mlg/mlg/5)
+
 [pandas documentation](https://pandas.pydata.org/docs/)
 
 [numpy documentation](https://numpy.org/doc/)
@@ -103,3 +106,5 @@ Baseball links
 [Article about Statcast stats (available 2015 - present)](https://www.mlb.com/news/statcast-primer-baseball-will-never-be-the-same/c-119234412)
 
 [Additional Statcast article](https://www.si.com/mlb/2016/08/26/statcast-era-data-technology-statistics)
+
+Machine
