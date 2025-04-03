@@ -1,0 +1,14 @@
+Team
+Age
+GDP
+IFH
+BUH
+GB/FB
+IFFB%
+HR/FB
+IFH%
+BUH%
+Spd
+EV
+maxEV
+Pace (pi)
