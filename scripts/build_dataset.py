@@ -18,34 +18,33 @@
 #     players_with_splits = pd.read_csv(player_stats + str(<current year>) + '_with_team_splits.csv')
 #     teams = ...
 
-#     use team stats file to generate a dictionary of team names : team factor;
-#     '''
-#     # this snippet is how I worked out generating team factors per season and added them to players statlines.
-#     # Loading the data set into a dataframe 
-#     team_stats = pd.read_csv("../../data/raw/team_stats_2015.csv")
+    #use team stats file to generate a dictionary of team names : team factor;
+    # '''
+    # # this snippet is how I worked out generating team factors per season and added them to players statlines.
+    # # Loading the data set into a dataframe 
+    # team_stats = pd.read_csv("../../data/raw/team_stats_2015.csv")
 
-#     # adding a column for team factor feature
-#     team_stats.insert(0, "tmFactor", 0)
+    # # adding a column for team factor feature
+    # team_stats.insert(0, "tmFactor", 0)
 
-#     # populating the team factor column for each team   
-#     for _ in team_stats:
-#         team_stats["tmFactor"] = team_stats["HR"]/max(team_stats["HR"])
+    # # populating the team factor column for each team   
+    # for _ in team_stats:
+    #     team_stats["tmFactor"] = team_stats["HR"]/max(team_stats["HR"])
 
-#     # creating a dictionary of Team: team Factor
-#     team_factor = team_stats.set_index("Team")["tmFactor"].to_dict()
+    # # creating a dictionary of Team: team Factor
+    # team_factor = team_stats.set_index("Team")["tmFactor"].to_dict()
 
-#     # loading a season dataset and cleaning out some columns that are duplicates or
-#     # appear to be blank on many rows based on a quick scan in excel
-#     players =  pd.read_csv("../../data/raw/MLB_player_stats_2015.csv")
-#     players = players[players['PA'] >= 20]
-#     players = players.drop(columns=['Name.1', 'Team.1','UBR', 'wGDP', 'XBR'], axis=1)
+    # # loading a season dataset and cleaning out some columns that are duplicates or
+    # players =  pd.read_csv("../../data/raw/MLB_player_stats_2015.csv")
 
-#     # adding and populating team factor column on player stats data set
-#     players.insert(0,  "tmFactor", 0)
-#     players["tmFactor"] = players["Team"].map(team_factor)
-#     '''
+    # # adding and populating team factor column on player stats data set
+    # players.insert(0,  "tmFactor", 0)
+    # players["tmFactor"] = players["Team"].map(team_factor)
+    # '''
 
-#     also sum up the home runs for the season and append to a season: season factor dictionary; see above snippet for examples of loading into a dictionary
+
+#     also sum up the home runs for the season and append to a list of season home run totals  
+#       dictionary key: value -> season: total homeruns for season
 
 #     teamsplits file drop each row with a unique playerID (this should leave me with just the players that played for multiple tems in a season;
 #     use team factor dictionary to replace team name column with team factor;
@@ -55,8 +54,13 @@
 #     if team = '---' 
 #         this will be replaced with weighted team factor based on correspnding playerID in the other generated dictionary;
 
+#    (team A factor * team A plate appearances + team B factor * team B plate appearances ) / ( team A plate appearances +team B plate appearances)
+
 #     append data to combined dataset dataframe;
 # end of loop.
+#
+
+#   season: season factor dictionary; see above snippet for examples of loading into a dictionary 
 
 # There should be one large dataset that inlcudes all statlines, add a column for season Factor and populate it with the season factor that correspnds with that rows value for the season column.
 
