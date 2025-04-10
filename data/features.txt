@@ -1,5 +1,5 @@
-Team
 Age
+Season
 GDP
 IFH
 BUH
@@ -12,3 +12,6 @@ Spd
 EV
 maxEV
 Pace (pi)
+HR
+season_factor
+tmFactor

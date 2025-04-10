@@ -1,0 +1,13 @@
+season_factor
+tmFactor
+Age
+3B
+IBB
+BUH
+IFFB%
+IFH%
+BUH%
+Spd
+UBR
+maxEV
+Pace (pi)

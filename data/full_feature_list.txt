@@ -1,0 +1,19 @@
+season_factor
+tmFactor
+Age
+3B
+IBB
+SH
+IFH
+BUH
+BB/K
+GB/FB
+IFFB%
+IFH%
+BUH%
+Spd
+UBR
+wGDP
+EV
+maxEV
+Pace (pi)
