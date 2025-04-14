@@ -1,0 +1,69 @@
+import pandas as pd
+import os
+
+player_stats_fp = '../../data/raw/MLB_player_stats_'
+team_stats_fp = '../../data/raw/team_stats_'
+
+combined_dataset = pd.DataFrame()
+season_hr_totals = {}
+season_factors = {}
+
+# years to iterate over
+for year in range(2015, 2025):
+    print(f"Processing {year}...")
+
+    # player and team data
+    players = pd.read_csv(f"{player_stats_fp}{year}.csv")
+    players_with_splits = pd.read_csv(f"{player_stats_fp}{year}_with_team_splits.csv")
+    teams = pd.read_csv(f"{team_stats_fp}{year}.csv")
+
+    teams.insert(0, "tmFactor", 0)
+    teams["tmFactor"] = teams["HR"] / teams["HR"].max()
+    team_factor_dict = teams.set_index("Team")["tmFactor"].to_dict()
+
+    # Add team factor to player stats
+    players.insert(0, "tmFactor", 0)
+    players["tmFactor"] = players["Team"].map(team_factor_dict)
+
+    # calculates total HRs for the season
+    total_hr = players["HR"].sum()
+    season_hr_totals[year] = total_hr
+
+    # add to season factor dictionary
+    season_factor = total_hr / max(season_hr_totals.values())  # normalize against the max
+    season_factors[year] = season_factor
+
+    # handle multi-team players
+    multiteam_df = players_with_splits.drop_duplicates(subset="playerID", keep=False).copy()
+
+    # replace Team names with team factor values
+    multiteam_df["tmFactor"] = multiteam_df["Team"].map(team_factor_dict)
+
+    # group by playerID and compute weighted team factor
+    weighted_tm_factors = {}
+    for pid, group in multiteam_df.groupby("playerID"):
+        total_PA = group["PA"].sum()
+        weighted_factor = (group["tmFactor"] * group["PA"]).sum() / total_PA
+        weighted_tm_factors[pid] = weighted_factor
+
+    # replace '---' with weighted team factor in main player dataset
+    for i, row in players.iterrows():
+        if row["Team"] == "---":
+            pid = row["playerID"]
+            if pid in weighted_tm_factors:
+                players.at[i, "tmFactor"] = weighted_tm_factors[pid]
+
+    # add season column
+    players["season"] = year
+
+    # append to combined dataset
+    combined_dataset = pd.concat([combined_dataset, players], ignore_index=True)
+
+# add seasonFactor column
+combined_dataset["seasonFactor"] = combined_dataset["season"].map(season_factors)
+
+# Final combined dataset is ready
+print("All years processed. Final dataset shape:", combined_dataset.shape)
+
+print(combined_dataset.head())
+
