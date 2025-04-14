@@ -64,3 +64,6 @@ combined_dataset["seasonFactor"] = combined_dataset["season"].map(season_factors
 
 # Final combined dataset is ready
 print("All years processed. Final dataset shape:", combined_dataset.shape)
+
+print(combined_dataset.head())
+
