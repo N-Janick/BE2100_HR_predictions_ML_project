@@ -3,11 +3,18 @@ tmFactor
 Age
 3B
 IBB
+GDP
 BUH
+GB/FB
 IFFB%
+HR/FB
 IFH%
 BUH%
 Spd
-UBR
+EV
 maxEV
+HardHit%
+Zone% (pi)
 Pace (pi)
+HR
+Season

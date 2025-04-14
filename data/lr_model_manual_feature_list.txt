@@ -1,0 +1,8 @@
+G
+RBI/G
+BB
+SO
+Barrel%
+HardHit%
+HR
+Season

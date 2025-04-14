@@ -3,17 +3,26 @@ tmFactor
 Age
 3B
 IBB
-SH
+GDP
 IFH
 BUH
+K%
 BB/K
+BABIP
 GB/FB
 IFFB%
+HR/FB
 IFH%
 BUH%
 Spd
-UBR
-wGDP
 EV
+LA
+Barrel%
 maxEV
+HardHit%
+O-Contact% (pi)
+Z-Contact% (pi)
+Zone% (pi)
 Pace (pi)
+HR
+Season

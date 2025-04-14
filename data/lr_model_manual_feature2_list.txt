@@ -1,0 +1,9 @@
+season_factor
+tmFactorXseason_factor
+RBI/G
+BB
+SO
+Barrel%
+HardHit%
+HR
+Season
