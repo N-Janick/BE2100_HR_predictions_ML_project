@@ -22,4 +22,4 @@ for filename in os.listdir(directory):
 combined_df = pd.concat(dfs, ignore_index=True)
 
 # Write the combined dataframe to a new CSV file
-combined_df.to_csv('MLB_player_stats_processed.csv', index=False)
+combined_df.to_csv('data/raw/MLB_player_stats_2015_2024.csv', index=False)
